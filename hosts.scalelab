@@ -9,8 +9,9 @@ hyperfoil_agent
 # Both these are Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
 #f03-h25-000-r620.rdu2.scalelab.redhat.com
 #f03-h26-000-r620.rdu2.scalelab.redhat.com
-worker010
-worker011
+worker-1.performance.maistra.test
+#worker010
+#worker011
 
 [hyperfoil:vars]
 hyperfoil_jfr=false
@@ -38,38 +39,38 @@ backend_type=java
 hyperfoil_distribution=/home/rvansa/workspace/Hyperfoil/distribution/target/distribution
 hyperfoil_deployer=k8s
 hyperfoil_controller_protocol=https
-hyperfoil_controller_host=hyperfoil.apps.ocp.scalelab
+hyperfoil_controller_host=hyperfoil.apps.performance.maistra.test
 hyperfoil_controller_port=443
 hyperfoil_validate_certs=false
 test_rampup_duration=120
 test_steady_duration=60
 test_name=closedmodel
 # For open-model
-test_users_per_sec=4500
-test_inc_users_per_sec=1500
+test_users_per_sec=100
+test_inc_users_per_sec=30
 # For closed-model
-test_concurrent_users=1050
+test_concurrent_users=25
 
-test_shared_connections=2300
+test_shared_connections=100
 
 docker_registry=image-registry.openshift-image-registry.svc:5000
 pods_per_dc=1
-num_dc=10
+num_dc=5
 batch_size=1000
-use_istio=true
-#use_istio=false
+#use_istio=true
+use_istio=false
 #namespace=plain-scale
-#wildcard_domain=plain.apps.ocp.scalelab
+#wildcard_domain=plain.apps.performance.maistra.test
 
 
-#namespace=mesh-scale
-#control_plane=mesh-control-plane
-#wildcard_domain=mesh.apps.ocp.scalelab
+namespace=mesh-scale
+control_plane=mesh-control-plane
+wildcard_domain=mesh.apps.performance.maistra.test
 gateway_port=8443
 
-namespace=istio-scale
-control_plane=istio-system
-wildcard_domain=istio.apps.ocp.scalelab
+#namespace=istio-scale
+#control_plane=istio-system
+#wildcard_domain=istio.apps.performance.maistra.test
 gateway_port=443
 
 policy_version=old

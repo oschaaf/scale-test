@@ -16,7 +16,7 @@
 - name: Set expected pod pattern
   when: not (use_istio | bool)
   set_fact:
-    pod_pattern: "1/1"
+    pod_pattern: "2/2"
 - name: Wait for pods to come up
   shell: "oc get po -l app==scale-test -l batch==batch-{{ dc_first }} -n {{ namespace }} --no-headers | grep '{{ pod_pattern }}' | wc -l"
   register: ready_pods

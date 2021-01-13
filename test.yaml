@@ -1,6 +1,7 @@
 # Gather facts
 - hosts: hyperfoil
-  ignore_unreachable: true
+  connection: local
+  ignore_unreachable: false
   tasks: []
 - hosts: hyperfoil_controller
   tasks:
@@ -60,7 +61,7 @@
         num_gateways: "{{ gateway_cmd.stdout.split() | length }}"
         num_routers: 0
         endpoint_port: "{{ gateway_port }}"
-      failed_when: num_gateways != expected_gateways
+      failed_when: num_gateways != "1"
   - when: target == 'services'
     block:
     - name: Find services
