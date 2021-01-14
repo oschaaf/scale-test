@@ -83,9 +83,9 @@
     - name: Drop existing routes
       command: "oc delete route --all -n {{ namespace }}"
       failed_when: false
-    - name: Expose route
-      command: "oc create route reencrypt app-{{ item }} --cert=/Users/oschaaf/code/self-sign-certificate/domain.crt --key=/Users/oschaaf/code/self-sign-certificate/domain.key --service=app-{{ item }} --port=8443 --hostname=app-{{ item }}.{{ wildcard_domain }}"
-      loop: "{{ range(1, (num_apps | int) + 1, 1) | list }}"
+    #- name: Expose route
+    #  command: "oc create route reencrypt app-{{ item }} --cert=/Users/oschaaf/code/self-sign-certificate/domain.crt --key=/Users/oschaaf/code/self-sign-certificate/domain.key --service=app-{{ item }} --port=8443 --hostname=app-{{ item }}.{{ wildcard_domain }}"
+    #  loop: "{{ range(1, (num_apps | int) + 1, 1) | list }}"
 # When starting all the deployments concurrently sometimes things get stuck
   - name: Generate deployment configs in batches
     include_tasks: generate-dc.yaml

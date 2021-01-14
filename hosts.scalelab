@@ -46,10 +46,10 @@ test_rampup_duration=120
 test_steady_duration=60
 test_name=closedmodel
 # For open-model
-test_users_per_sec=100
-test_inc_users_per_sec=30
+test_users_per_sec=1000
+test_inc_users_per_sec=300
 # For closed-model
-test_concurrent_users=25
+test_concurrent_users=250
 
 test_shared_connections=100
 
@@ -58,7 +58,7 @@ pods_per_dc=1
 num_dc=5
 batch_size=1000
 #use_istio=true
-use_istio=false
+use_istio=true
 #namespace=plain-scale
 #wildcard_domain=plain.apps.performance.maistra.test
 
@@ -71,9 +71,9 @@ gateway_port=8443
 #namespace=istio-scale
 #control_plane=istio-system
 #wildcard_domain=istio.apps.performance.maistra.test
-gateway_port=443
+#gateway_port=443
 
-policy_version=old
+policy_version=new
 
 target=gateways
 #target=routers
