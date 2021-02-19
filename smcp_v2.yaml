@@ -32,10 +32,10 @@ spec:
           resources:
             # Missing the limits would cause errors with requests above limits
             limits:
-              cpu: "256"
-              memory: 256Gi
+              cpu: "4"
+              memory: 2Gi
             requests:
-              cpu: "0.5"
+              cpu: "4"
               memory: 2Gi
         deployment:
           autoScaling:
@@ -57,7 +57,7 @@ spec:
       container:
         resources:
           requests:
-            cpu: 100m
+            cpu: "0.3"
             memory: 128Mi
   runtime:
     components:

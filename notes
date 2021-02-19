@@ -1,0 +1,4 @@
+oc get mutatingwebhookconfiguration smcp.mutation.maistra.io -o yaml
+oc get mutatingwebhookconfiguration
+oc apply -f smcp_v2.yaml
+oc get po -n openshift-operators -o wide

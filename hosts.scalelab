@@ -9,7 +9,11 @@ hyperfoil_agent
 # Both these are Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
 #f03-h25-000-r620.rdu2.scalelab.redhat.com
 #f03-h26-000-r620.rdu2.scalelab.redhat.com
-worker-1.performance.maistra.test
+#worker-2.performance.maistra.test
+#master-2.performance.maistra.test
+#master-3.performance.maistra.test
+master-1.performance.maistra.test
+
 #worker010
 #worker011
 
@@ -49,9 +53,9 @@ test_name=closedmodel
 test_users_per_sec=1000
 test_inc_users_per_sec=300
 # For closed-model
-test_concurrent_users=250
+test_concurrent_users=2500
 
-test_shared_connections=100
+test_shared_connections=1000
 
 docker_registry=image-registry.openshift-image-registry.svc:5000
 pods_per_dc=1
