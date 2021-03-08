@@ -26,6 +26,9 @@ items:
         annotations:
           sidecar.istio.io/inject: "true"
           sidecar.istio.io/statsInclusionPrefixes: listener,cluster.outbound
+          sidecar.istio.io/proxyCPU: "1000m"
+          sidecar.istio.io/proxyCPULimit: "2000m"
+          sidecar.istio.io/concurrency: "2"
         labels:
           app: scale-test
           batch: "batch-{{ dc_first }}"
@@ -58,11 +61,11 @@ items:
 {% if backend_type == "java" %}
           command:
           - java
-          - -Dquarkus.vertx.event-loops-pool-size=1
-          - -Dquarkus.vertx.internal-blocking-pool-size=1
-          - -Dquarkus.vertx.worker-pool-size=1
-          - -Dquarkus.http.io-threads=1
-          - -Dquarkus.thread-pool.core-threads=1
+          - -Dquarkus.vertx.event-loops-pool-size=2
+          - -Dquarkus.vertx.internal-blocking-pool-size=2
+          - -Dquarkus.vertx.worker-pool-size=2
+          - -Dquarkus.http.io-threads=2
+          - -Dquarkus.thread-pool.core-threads=2
           - -Dquarkus.http.ssl.certificate.file=/var/certs/tls.crt
           - -Dquarkus.http.ssl.certificate.key-file=/var/certs/tls.key
           - -jar
@@ -101,6 +104,8 @@ items:
               initialDelaySeconds: 5
           resources:
 {% if backend_cpu is defined %}
+            limits:
+              cpu: "2000m"
             requests:
               cpu: "{{ backend_cpu }}"
 {% endif %}

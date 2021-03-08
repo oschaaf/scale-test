@@ -75,6 +75,7 @@ items:
           http:
             http1MaxPendingRequests: 10000
             http2MaxRequests: 10000
+            maxRequestsPerConnection: 250
           tcp:
             maxConnections: 10000
       - port:
@@ -85,6 +86,7 @@ items:
           http:
             http1MaxPendingRequests: 10000
             http2MaxRequests: 10000
+            maxRequestsPerConnection: 250
           tcp:
             maxConnections: 10000
     subsets:

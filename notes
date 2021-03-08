@@ -1,0 +1,105 @@
+notes
+
+VERSION=2.0 ansible-playbook -v -i hosts.scalelab setup.yaml 
+VERSION=2.0 ansible-playbook -v -i hosts.scalelab test.yaml 
+
+nighthawk_client --concurrency 2 --request-header "Host: app-1.mesh.apps.performance.maistra.test" "https://192.168.222.19:8443/proxy?p=1&url=http://app-1:8080/mersennePrime?p=300" --no-duration --rps 600 --max-pending-requests 5000 --max-active-requests 200000 --connections 500 --failure-predicate "a:1" --request-header "x-variant: stable" --experimental-h2-use-multiple-connections --open-loop --h2
+nighthawk_client --concurrency 2 --request-header "Host: app-3.plain.apps.ocp.scalelab" "https://192.168.222.19/proxy?p=1&url=http://app-3:8080/mersennePrime?p=300" --no-duration --rps 7000 --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" --request-header "x-variant: stable"
+
+
+rm app-1.txt
+rm app-2.txt 
+rm app-3.txt 
+rm app-4.txt 
+rm app-5.txt
+rm app-6.txt 
+rm app-7.txt 
+rm app-8.txt 
+rm app-9.txt
+rm app-10.txt 
+rm app-11.txt 
+rm app-12.txt 
+
+nighthawk_client --concurrency 2 --request-header "Host: app-1.plain.apps.ocp.scalelab" \
+    "https://192.168.222.20/proxy?p=1&url=http://app-1:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-1.txt &
+
+nighthawk_client --concurrency 2 --request-header "Host: app-2.plain.apps.ocp.scalelab" \
+    "https://192.168.222.19/proxy?p=1&url=http://app-2:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-2.txt &
+
+nighthawk_client --concurrency 2 --request-header "Host: app-3.plain.apps.ocp.scalelab" \
+    "https://192.168.222.21/proxy?p=1&url=http://app-3:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-3.txt &
+
+nighthawk_client --concurrency 2 --request-header "Host: app-4.plain.apps.ocp.scalelab" \
+    "https://192.168.222.22/proxy?p=1&url=http://app-4:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-4.txt &
+
+
+nighthawk_client --concurrency 2 --request-header "Host: app-5.plain.apps.ocp.scalelab" \
+    "https://192.168.222.20/proxy?p=1&url=http://app-5:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-5.txt &
+
+nighthawk_client --concurrency 2 --request-header "Host: app-6.plain.apps.ocp.scalelab" \
+    "https://192.168.222.19/proxy?p=1&url=http://app-6:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-6.txt &
+
+nighthawk_client --concurrency 2 --request-header "Host: app-7.plain.apps.ocp.scalelab" \
+    "https://192.168.222.21/proxy?p=1&url=http://app-7:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-7.txt &
+
+nighthawk_client --concurrency 2 --request-header "Host: app-8.plain.apps.ocp.scalelab" \
+    "https://192.168.222.22/proxy?p=1&url=http://app-8:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-8.txt &
+
+nighthawk_client --concurrency 2 --request-header "Host: app-9.plain.apps.ocp.scalelab" \
+    "https://192.168.222.20/proxy?p=1&url=http://app-9:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-9.txt &
+
+nighthawk_client --concurrency 2 --request-header "Host: app-10.plain.apps.ocp.scalelab" \
+    "https://192.168.222.19/proxy?p=1&url=http://app-10:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-10.txt &
+
+nighthawk_client --concurrency 2 --request-header "Host: app-11.plain.apps.ocp.scalelab" \
+    "https://192.168.222.21/proxy?p=1&url=http://app-11:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-11.txt &
+
+nighthawk_client --concurrency 2 --request-header "Host: app-12.plain.apps.ocp.scalelab" \
+    "https://192.168.222.22/proxy?p=1&url=http://app-12:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-12.txt &
+
+
+
+
+nighthawk_client --concurrency 2 --request-header "Host: app-10.istio.apps.ocp.scalelab" \
+    "https://10.129.5.179:8443/proxy?p=1&url=http://app-10:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-10.txt &
+
+nighthawk_client --concurrency 2 --request-header "Host: app-11.istio.apps.ocp.scalelab" \
+    "https://10.129.5.179:8443/proxy?p=1&url=http://app-11:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-11.txt &
+
+nighthawk_client --concurrency 2 --request-header "Host: app-12.istio.apps.ocp.scalelab" \
+    "https://10.129.5.179:8443/proxy?p=1&url=http://app-12:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-12.txt &
+
+nighthawk_client --concurrency 2 --request-header "Host: app-13.istio.apps.ocp.scalelab" \
+    "https://10.129.5.179:8443/proxy?p=1&url=http://app-13:8080/mersennePrime?p=300" --no-duration --rps 7000 \
+    --max-pending-requests 1000 --max-active-requests 200000 --connections 125 --failure-predicate "a:1" \
+    --request-header "x-variant: stable" 2>&1 > app-13.txt &
