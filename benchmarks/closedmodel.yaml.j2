@@ -35,8 +35,8 @@ phases:
           - params: &params
             - randomInt:
                 toVar: p
-                min: 200
-                max: 300
+                min: 1
+                max: 1
             - randomInt:
                 toVar: hostIndex
                 min: 1
@@ -44,8 +44,7 @@ phases:
             - randomItem:
                 list:
                   stable: 0.8
-                  canary: 0.1
-                  mirror: 0.1
+                  canary: 0.2
                 toVar: variant
           - test:
             - httpRequest:
@@ -63,7 +62,7 @@ phases:
                 #       metric: simple-upstream
                 #       unit: ms
         proxy: &proxy
-          weight: 1
+          weight: 0
           scenario:
           - params: *params
           - test:
@@ -85,7 +84,7 @@ phases:
                 #       header: x-proxy-service-time
                 #       metric: proxy-downstream
         db: &db
-          weight: 1
+          weight: 0
           scenario:
           - params: *params
           - test:

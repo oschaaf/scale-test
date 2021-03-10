@@ -50,8 +50,8 @@ test_inc_users_per_sec=1500
 # For closed-model
 #test_concurrent_users=1200
 #test_shared_connections=10000
-test_concurrent_users=600
-test_shared_connections=5000
+test_concurrent_users=3000
+test_shared_connections=20000
 
 
 docker_registry=image-registry.openshift-image-registry.svc:5000

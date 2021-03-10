@@ -28,10 +28,10 @@
       min_pods: "{{ workload_counts.results | map(attribute='stdout') | list | min }}"
       max_pods: "{{ workload_counts.results | map(attribute='stdout') | list | max }}"
       total_pods: "{{ workload_counts.results | map(attribute='stdout') | list | map('int') | sum }}"
-  - name: Test total number of pods
-    when: "(total_pods | int) != (num_dc | int) * (pods_per_dc | int)"
-    fail:
-      msg: "Incorrect number of pods: expected {{ (num_dc | int) * (pods_per_dc | int) }} found {{ total_pods }}"
+  #- name: Test total number of pods
+  #  when: "(total_pods | int) != (num_dc | int) * (pods_per_dc | int)"
+  #  fail:
+  #    msg: "Incorrect number of pods: expected {{ (num_dc | int) * (pods_per_dc | int) }} found {{ total_pods }}"
   - name: Test difference
     when: "(max_pods | int) - (min_pods | int) > 1"
     fail:
