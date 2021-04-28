@@ -25,7 +25,8 @@ items:
 # Alternative solution: https://bani.com.br/2018/09/istio-sidecar-injection-enabling-automatic-injection-adding-exceptions-and-debugging/
         annotations:
           sidecar.istio.io/inject: "true"
-          sidecar.istio.io/statsInclusionPrefixes: listener,cluster.outbound
+          # sidecar.istio.io/statsInclusionPrefixes: listener,cluster.outbound
+          sidecar.istio.io/statsInclusionPrefixes: cluster_manager,listener_manager
           sidecar.istio.io/proxyCPU: "1000m"
           sidecar.istio.io/proxyCPULimit: "2000m"
           sidecar.istio.io/concurrency: "2"
@@ -36,6 +37,9 @@ items:
           app.index: application-{{ (index + 4) // 5 }}
           app.variant:  {{ app_variant }}
       spec:
+        tolerations:
+        - key: "workload"
+          effect: "NoExecute" 
         nodeSelector:
 {% if backend_node is defined %}
           kubernetes.io/hostname: {{ backend_node }}

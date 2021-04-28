@@ -47,6 +47,7 @@ done;
 
 # Install control-plane
 oc new-project mesh-control-plane || true # don't fail if it exists
+oc label namespace mesh-control-plane furnace=enabled
 while ! oc apply -f $SMCP ; do
   echo "The operator pod is probably not accepting connections yet..."
   sleep 5;

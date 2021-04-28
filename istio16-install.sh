@@ -13,14 +13,11 @@ set -e -x
 # Install control plane
 oc adm policy add-scc-to-group anyuid system:serviceaccounts:istio-system
 
-if [ ! -f ./istioctl ]; then
-    wget https://github.com/istio/istio/releases/download/1.6.13/istioctl-1.6.13-linux-amd64.tar.gz
-    tar xzf istioctl-1.6.13-linux-amd64.tar.gz
-fi
-./istioctl operator init
+docker run --rm --network=host -v ~/.kube:/tmp/kube istio/istioctl:1.6.13 -c /tmp/kube/config operator init
 
 # Install control-plane
 oc new-project istio-system || true # don't fail if it exists
+oc label namespace istio-system furnace=enabled
 oc delete istiooperators.install.istio.io basic-install || true # Update sometimes fails due to resource version
 sleep 5 # Sometimes there's a lag for delting
 oc apply -f istio16.yaml

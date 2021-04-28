@@ -31,7 +31,7 @@ spec:
         container:
           env:
             ISTIO_METAJSON_ANNOTATIONS: |
-              "{\"sidecar.istio.io/statsInclusionPrefixes\": \"cluster.outbound,listener\"}"
+              "{\"sidecar.istio.io/statsInclusionPrefixes\": \"cluster_manager,listener_manager\"}"
           resources:
             # Missing the limits would cause errors with requests above limits
             limits:
@@ -46,6 +46,12 @@ spec:
         pod:
           nodeSelector:
             test.role: router
+          tolerations:
+          - key: "gateway"
+            effect: "NoExecute" 
+          metadata:
+            labels:
+              furnace: enabled
       service: {}
     openshiftRoute:
       enabled: true

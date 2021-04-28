@@ -18,7 +18,7 @@ spec:
         env:
         - name: ISTIO_METAJSON_ANNOTATIONS
           value: |
-            {"sidecar.istio.io/statsInclusionPrefixes": "cluster.outbound,listener"}
+            {"sidecar.istio.io/statsInclusionPrefixes": "cluster_manager,listener_manager"}
         nodeSelector:
           test.role: router
         replicaCount: 1
@@ -47,6 +47,9 @@ spec:
       logLevel: info
     gateways:
       istio-ingressgateway:
+        tolerations:
+        - key: "gateway"
+          effect: "NoExecute" 
         autoscaleEnabled: false
     global:
       proxy:
@@ -59,3 +62,6 @@ spec:
     sidecarInjectorWebhook:
       injectedAnnotations:
         k8s.v1.cni.cncf.io/networks: istio-cni
+    telemetry:
+      enabled: false
+
